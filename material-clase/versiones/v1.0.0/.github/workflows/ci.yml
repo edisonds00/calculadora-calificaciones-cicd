@@ -1,0 +1,40 @@
+name: Integración continua
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    name: Validar, probar y construir
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v7
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias de forma reproducible
+        run: npm ci
+
+      - name: Validar sintaxis
+        run: npm run check
+
+      - name: Ejecutar pruebas automatizadas
+        run: npm test
+
+      - name: Construir el artefacto web
+        run: npm run build

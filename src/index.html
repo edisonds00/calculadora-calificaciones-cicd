@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculadora académica usada para demostrar CI/CD con GitHub Actions.">
+  <title>Calculadora de calificaciones</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <main class="contenedor">
+    <section class="tarjeta" aria-labelledby="titulo-principal">
+      <p class="etiqueta">Gestión de la Configuración del Software</p>
+      <h1 id="titulo-principal">Calculadora de calificaciones</h1>
+      <p class="introduccion">
+        Ingrese tres calificaciones entre 0 y 10. El sistema calculará el promedio
+        y mostrará la clasificación académica correspondiente.
+      </p>
+
+      <form id="formulario-calificaciones" novalidate>
+        <div class="campos">
+          <label>
+            Calificación 1
+            <input id="calificacion-1" name="calificacion-1" type="number" min="0" max="10" step="0.01" required>
+          </label>
+          <label>
+            Calificación 2
+            <input id="calificacion-2" name="calificacion-2" type="number" min="0" max="10" step="0.01" required>
+          </label>
+          <label>
+            Calificación 3
+            <input id="calificacion-3" name="calificacion-3" type="number" min="0" max="10" step="0.01" required>
+          </label>
+        </div>
+
+        <div class="acciones">
+          <button type="submit">Calcular resultado</button>
+          <button id="boton-limpiar" type="button" class="secundario">Limpiar</button>
+        </div>
+      </form>
+
+      <section id="resultado" class="resultado" aria-live="polite" hidden>
+        <h2>Resultado</h2>
+        <p id="promedio"></p>
+        <p id="clasificacion"></p>
+      </section>
+
+      <p id="mensaje-error" class="error" role="alert" hidden></p>
+      <footer>Versión 1.1.0 - Prueba de concepto CI/CD</footer>
+    </section>
+  </main>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
